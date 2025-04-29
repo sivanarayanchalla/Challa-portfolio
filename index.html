@@ -1,62 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Challa Siva | Data Science Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <title>Challa Siva | Data Scientist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand">Challa Siva</div>
-    <nav>
-      <a href="#about"><i class="fas fa-user"></i> About</a>
-      <a href="#projects"><i class="fas fa-code"></i> Projects</a>
-      <a href="#chart"><i class="fas fa-chart-line"></i> Chart</a>
-      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+  <header class="hero" data-aos="fade-down">
+    <nav class="navbar">
+      <div class="logo">Challa Siva</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="toggle-btn" onclick="toggleTheme()">☀️/🌙</button>
     </nav>
-    <button class="toggle-mode" onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
-  </aside>
+    <div class="hero-content">
+      <h1>Hi, I'm <span class="highlight">Challa Siva</span></h1>
+      <p>Aspiring Data Scientist | From Code to Insights</p>
+      <a href="#projects" class="btn">See My Work</a>
+    </div>
+  </header>
 
-  <main class="main-content">
-    <section id="about" class="section" data-aos="fade-up">
-      <h1>Hello, I'm <span class="highlight">Challa Siva</span> 👋</h1>
-      <p>🚀 Data Science Student in Germany | Former Full Stack Developer | Passionate about AI, ML, and Analytics</p>
-    </section>
+  <section id="about" class="section" data-aos="fade-right">
+    <h2>About Me</h2>
+    <p>I’m a Data Science student in Germany with a background in full stack development. I specialize in building intelligent data-driven applications using Python, machine learning, and modern tools like Streamlit, Docker, and Azure.</p>
+  </section>
 
-    <section id="projects" class="section" data-aos="fade-up">
-      <h2>Featured Projects</h2>
-      <div class="card-grid">
-        <div class="card" data-aos="fade-up" data-aos-delay="100">
-          <h3>Gold Export Analysis</h3>
-          <p>Exploring trade data from Zimbabwe & Uganda using Pandas, Seaborn & Linear Regression forecasting.</p>
-        </div>
-        <div class="card" data-aos="fade-up" data-aos-delay="200">
-          <h3>Lane Detection System (IoT + CV)</h3>
-          <p>Real-time lane tracking using OpenCV and Raspberry Pi to enhance road safety with alerts.</p>
-        </div>
-      </div>
-    </section>
+  <section id="projects" class="section dark" data-aos="fade-up">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Gold Export Analysis</h3>
+      <p>Forecasted gold export trends using pandas and linear regression for Zimbabwe and Uganda.</p>
+      <p class="tools">Tools: Python, Pandas, Seaborn, Plotly, Scikit-learn</p>
+    </div>
+    <div class="project-card">
+      <h3>Lane Detection System</h3>
+      <p>Implemented real-time lane detection using OpenCV on a Raspberry Pi setup for driver safety.</p>
+      <p class="tools">Tools: Python, OpenCV, Raspberry Pi</p>
+    </div>
+  </section>
 
-    <section id="chart" class="section" data-aos="fade-up">
-      <h2>Sample Data Chart</h2>
-      <div id="chartDiv" style="width:100%;max-width:600px;height:400px;"></div>
-    </section>
+  <section id="contact" class="section" data-aos="fade-left">
+    <h2>Contact Me</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="_replyto" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
 
-    <section id="contact" class="section" data-aos="fade-up">
-      <h2>Get in Touch</h2>
-      <p>📫 Email: your-email@example.com</p>
-      <p>🌐 GitHub: github.com/yourprofile</p>
-      <p>🔗 LinkedIn: linkedin.com/in/yourprofile</p>
-    </section>
-  </main>
+  <footer class="footer" data-aos="fade-up">
+    <p>© 2025 Challa Siva. All rights reserved.</p>
+  </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>AOS.init();</script>
-  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    function toggleTheme() {
+      const html = document.documentElement;
+      const theme = html.getAttribute("data-theme");
+      html.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
+    }
+  </script>
 </body>
 </html>
