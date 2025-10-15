@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siva Narayanappa Challa - Data Scientist & Analyst</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #0a2540;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        #three-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 223, 252, 0.5);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        nav {
+            background: rgba(10, 37, 64, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #00dffc;
+            font-weight: 600;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(245, 247, 250, 0.05);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00dffc;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #00dffc;
+            margin: 0.5rem auto 0;
+        }
+
+        .about, .contact {
+            background: rgba(245, 247, 250, 0.1);
+        }
+
+        .skills-grid, .projects-grid, .experience-grid, .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item, .project-item, .experience-item, .education-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .skill-item:hover, .project-item:hover, .experience-item:hover, .education-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 223, 252, 0.2);
+        }
+
+        .contact a {
+            color: #00dffc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact a:hover {
+            color: #ffffff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0a2540;
+            color: #00dffc;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <canvas id="three-canvas"></canvas>
+        <h1>Siva Narayanappa Challa</h1>
+        <p>Data Scientist | Data Analyst | Visualization Expert</p>
+        <p>Berlin, Germany</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I am a Data Science graduate student with a passion for transforming data into actionable insights. With a strong foundation in machine learning, statistical analysis, and data visualization, I specialize in building end-to-end data solutions, from ETL pipelines to model deployment. My expertise lies in predictive modeling, analytics platforms, and creating impactful business intelligence dashboards. I thrive on solving complex problems and delivering data-driven value to stakeholders.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item"><strong>Programming:</strong> Python (Pandas, NumPy, Scikit-learn), SQL, R</div>
+            <div class="skill-item"><strong>Machine Learning:</strong> Regression, Classification, Neural Networks, Ensemble Methods, Hyperparameter Tuning</div>
+            <div class="skill-item"><strong>Data Visualization:</strong> Tableau, Streamlit, Matplotlib, Seaborn</div>
+            <div class="skill-item"><strong>Databases & Tools:</strong> PostgreSQL, SQLite, Git, Docker</div>
+            <div class="skill-item"><strong>Cloud & AI:</strong> Microsoft Azure AI, Azure ML Studio</div>
+            <div class="skill-item"><strong>Frameworks:</strong> Django, React, Next.js</div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-item">
+                <h3>Advanced Analytics Platform</h3>
+                <p>Developed a web application for automated data analysis, supporting XLS, JSON, and CSV formats. Implemented automated EDA, statistical reporting, and advanced modeling. Deployed on Streamlit Cloud.</p>
+                <p><strong>Technologies:</strong> Python, Streamlit, Pandas, Scikit-learn, TensorFlow</p>
+            </div>
+            <div class="project-item">
+                <h3>Healthcare Cost Analysis & Predictive Modeling</h3>
+                <p>Analyzed healthcare dataset to predict medical expenses using linear regression. Built ETL pipeline and created interactive Tableau dashboards for stakeholders.</p>
+                <p><strong>Technologies:</strong> Python, Pandas, Scikit-learn, SQLite, Tableau</p>
+            </div>
+            <div class="project-item">
+                <h3>Smart Pricing: Ride Fare Optimization</h3>
+                <p>Developed ML models (Random Forest, XGBoost, LightGBM, Neural Networks) for ride fare prediction. Implemented ensemble methods for robust predictions.</p>
+                <p><strong>Technologies:</strong> Python, Scikit-learn, XGBoost, LightGBM, TensorFlow</p>
+            </div>
+            <div class="project-item">
+                <h3>Mahabharata RAG-AI Q&A System</h3>
+                <p>Built a Retrieval-Augmented Generation system for semantic search and Q&A on complex text corpus using NLP and vector databases.</p>
+                <p><strong>Technologies:</strong> Python, LangChain, LLMs, Vector Databases</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <h2>Professional Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-item">
+                <h3>Software Engineer II | Gnyan.AI</h3>
+                <p><em>Mar 2024 – Sep 2024</em></p>
+                <p>Developed full-stack data applications with React frontend and Django/Node.js backend. Implemented data processing and interactive visualizations using Docker for deployment.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Software Engineer | Gnyan.AI</h3>
+                <p><em>Oct 2023 – Mar 2024</em></p>
+                <p>Contributed to scalable backend systems supporting data-intensive applications.</p>
+            </div>
+            <div class="experience-item">
+                <h3>AI Solutions Intern | Crytonix Consulting Services</h3>
+                <p><em>Oct 2023 – Nov 2023</em></p>
+                <p>Implemented cloud-based AI solutions using Microsoft Azure AI services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-item">
+                <h3>M.Sc. in Data Science and Business</h3>
+                <p><em>University of Europe for Applied Sciences, Berlin, Germany</em></p>
+                <p><em>Oct 2024 – Sep 2026 (Expected)</em></p>
+            </div>
+            <div class="education-item">
+                <h3>B.E. in Electrical, Electronics and Comm. Engineering</h3>
+                <p><em>Sri Venkateshwara College of Engineering, India</em></p>
+                <p><em>Aug 2019 – Jun 2023</em></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <p><strong>Phone:</strong> +49 176 66021009</p>
+        <p><strong>Email:</strong> <a href="mailto:csiva9676@gmail.com">csiva9676@gmail.com</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/siva-narayanappa-challa-4404011b0/" target="_blank">linkedin.com/in/sivanarayanappa-challa</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/sivanarayanchalla" target="_blank">github.com/sivanarayanchalla</a></p>
+        <p><strong>Languages:</strong> English (Fluent), Telugu (Native), Hindi (Fluent)</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Siva Narayanappa Challa. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00dffc, wireframe: true });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        camera.position.z = 30;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            torusKnot.rotation.x += 0.005;
+            torusKnot.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
