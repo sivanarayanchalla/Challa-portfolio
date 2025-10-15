@@ -6,6 +6,7 @@
     <title>Siva Narayanappa Challa - Data Scientist & Analyst</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -19,6 +20,24 @@
             color: #e0e0e0;
             background-color: #0a2540;
             scroll-behavior: smooth;
+            cursor: none; /* Hide default cursor */
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(0, 223, 252, 0.5);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s;
+            z-index: 9999;
+        }
+
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(2);
+            background: rgba(0, 223, 252, 0.8);
         }
 
         header {
@@ -42,14 +61,30 @@
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px rgba(0, 223, 252, 0.5);
+            text-shadow: 0 0 15px rgba(0, 223, 252, 0.7);
         }
 
         header p {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: #00dffc;
+            color: #0a2540;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 223, 252, 0.5);
         }
 
         nav {
@@ -65,7 +100,7 @@
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         nav a {
@@ -88,6 +123,14 @@
             border-radius: 20px;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         h2 {
@@ -101,9 +144,9 @@
         h2::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 3px;
-            background: #00dffc;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #00dffc, #ffffff);
             margin: 0.5rem auto 0;
         }
 
@@ -121,23 +164,34 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 2rem;
             border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
             backdrop-filter: blur(5px);
         }
 
         .skill-item:hover, .project-item:hover, .experience-item:hover, .education-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 223, 252, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 223, 252, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        .contact a {
+        .contact a, .resume-link {
             color: #00dffc;
             text-decoration: none;
             transition: color 0.3s;
         }
 
-        .contact a:hover {
+        .contact a:hover, .resume-link:hover {
             color: #ffffff;
+        }
+
+        .resume-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: #00dffc;
+            color: #0a2540;
+            border-radius: 50px;
+            font-weight: 600;
         }
 
         footer {
@@ -145,15 +199,6 @@
             padding: 2rem;
             background: #0a2540;
             color: #00dffc;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        section {
-            animation: fadeIn 1s ease-out;
         }
 
         @media (max-width: 768px) {
@@ -173,11 +218,13 @@
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <header>
         <canvas id="three-canvas"></canvas>
         <h1>Siva Narayanappa Challa</h1>
         <p>Data Scientist | Data Analyst | Visualization Expert</p>
         <p>Berlin, Germany</p>
+        <button class="cta-button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Explore My Work</button>
     </header>
 
     <nav>
@@ -278,6 +325,7 @@
         <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/siva-narayanappa-challa-4404011b0/" target="_blank">linkedin.com/in/sivanarayanappa-challa</a></p>
         <p><strong>GitHub:</strong> <a href="https://github.com/sivanarayanchalla" target="_blank">github.com/sivanarayanchalla</a></p>
         <p><strong>Languages:</strong> English (Fluent), Telugu (Native), Hindi (Fluent)</p>
+        <a href="Siva_Narayanappa_Challa.docx" download class="resume-link">Download Resume</a>
     </section>
 
     <footer>
@@ -285,22 +333,48 @@
     </footer>
 
     <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+        });
+
+        document.querySelectorAll('a, button, .skill-item, .project-item, .experience-item, .education-item').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Three.js Setup with Mouse Interaction
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00dffc, wireframe: true });
-        const torusKnot = new THREE.Mesh(geometry, material);
-        scene.add(torusKnot);
+        // Particle System
+        const particleCount = 5000;
+        const particlesGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 100;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({ color: 0x00dffc, size: 0.1 });
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
 
         camera.position.z = 30;
 
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
         function animate() {
             requestAnimationFrame(animate);
-            torusKnot.rotation.x += 0.005;
-            torusKnot.rotation.y += 0.005;
+            particles.rotation.x = mouseY * 0.5;
+            particles.rotation.y = mouseX * 0.5;
             renderer.render(scene, camera);
         }
         animate();
@@ -310,6 +384,18 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        // Scroll Reveal Animations
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
